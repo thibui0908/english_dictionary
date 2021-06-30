@@ -7,6 +7,12 @@ def translate(w):
     w = w.lower()
     if w in data: 
         return data[w]
+    #handling words that start with a capital
+    elif w.title() in data: 
+        return data[w.title()]
+    #handling acronyms
+    elif w.upper() in data: 
+        return data[w.upper()]
     elif len(get_close_matches(w, data.keys())) > 0:
         answer = input("Did you mean %s instead? Y for yes, N for No. " % get_close_matches(w, data.keys())[0])
         if answer == "Y":
